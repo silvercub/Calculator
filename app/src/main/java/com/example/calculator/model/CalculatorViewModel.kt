@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.example.calculator.MathOperation
 import kotlin.math.abs
 import kotlin.math.log10
-import kotlin.math.pow
 
 private const val FIRST_OPERAND = 1
 private const val SECOND_OPERAND = 2
-private const val TEN_DOUBLE = 10.0
+private const val TEN = 10
 private const val ZERO_LONG: Long = 0
 
 
@@ -78,8 +77,8 @@ class CalculatorViewModel : ViewModel() {
      * Helper function to put the number in the next available column
      *  to 'append' the new number pressed to the previous one
      */
-    private fun extendByPowerOfTen(originalValue: Long, buttonPress: Int): Int =
-        TEN_DOUBLE.pow(originalValue.length()).toInt() * buttonPress
+    private fun extendByOneTensPlace(originalValue: Long): Long =
+        TEN * originalValue
 
 
     private fun getCurrentOperand(): Int {
@@ -93,7 +92,7 @@ class CalculatorViewModel : ViewModel() {
         return if (operand == ZERO_LONG) {
             newVal.toLong()
         } else {
-            return operand + extendByPowerOfTen(operand, newVal)
+            return newVal + extendByOneTensPlace(operand)
         }
     }
 
