@@ -18,7 +18,7 @@ class CalculatorViewModel : ViewModel() {
     private var _wholesSecondOperand: Long = 0
     private var _fractionalFirstOperand: Long = 0
     private var _fractionalSecondOperand: Long = 0
-    private var _mathOperation = MutableLiveData<MathOperation?>()
+    private var _mathOperation: MathOperation? = null
     private val _calculationDisplay = MutableLiveData<String>()
     val calculationDisplay: LiveData<String>
         get() = _calculationDisplay
@@ -36,7 +36,7 @@ class CalculatorViewModel : ViewModel() {
         ).toString()
         _calculationDisplay.value = when (getCurrentOperand()) {
             FIRST_OPERAND -> totalFirstOperand
-            else -> totalFirstOperand + _mathOperation.value!!.symbol +
+            else -> totalFirstOperand + _mathOperation?.symbol +
                     getTotalOperand(
                         _wholesSecondOperand,
                         _fractionalFirstOperand,
@@ -82,7 +82,7 @@ class CalculatorViewModel : ViewModel() {
 
 
     private fun getCurrentOperand(): Int {
-        return when (_mathOperation.value) {
+        return when (_mathOperation) {
             null -> FIRST_OPERAND
             else -> SECOND_OPERAND
         }
@@ -117,7 +117,7 @@ class CalculatorViewModel : ViewModel() {
         _wholesSecondOperand = 0
         _fractionalFirstOperand = 0
         _fractionalSecondOperand = 0
-        _mathOperation.value = null
+        _mathOperation = null
         _decimalModeFirstOperand = false
         _decimalModeSecondOperand = false
         updateDisplay()
