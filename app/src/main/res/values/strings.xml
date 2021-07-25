@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="one_numeral">1</string>
+    <string name="two_numeral">2</string>
+    <string name="three_numeral">3</string>
+    <string name="zero_numeral">0</string>
+    <string name="decimal_marker">.</string>
+    <string name="invert_minus">(-)</string>
+    <string name="four_numeral">4</string>
+    <string name="previous_answer">Ans</string>
+    <string name="five_numeral">5</string>
+    <string name="six_numeral">6</string>
+    <string name="seven_numeral">7</string>
+    <string name="eight_numeral">8</string>
+    <string name="nine_numeral">9</string>
+    <string name="addition_symbol">+</string>
+    <string name="multiplication_symbol">×</string>
+    <string name="delete_button_text">del</string>
+    <string name="clear_button_text">AC</string>
+    <string name="equal_sign_button">=</string>
+    <string name="minus_sign_button">-</string>
+    <string name="division_sign_button">÷</string>
+</resources>

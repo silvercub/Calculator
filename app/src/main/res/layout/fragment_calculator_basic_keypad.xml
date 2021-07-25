@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.calculator.model.CalculatorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".CalculatorBasicKeypadFragment">
+
+
+        <Button
+            android:id="@+id/zero_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setOrExtendOperand(0)}"
+            android:text="@string/zero_numeral"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/one_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setOrExtendOperand(1)}"
+            android:text="@string/one_numeral"
+            app:layout_constraintBottom_toTopOf="@id/zero_button_vertical"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/two_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/two_numeral"
+            app:layout_constraintBottom_toTopOf="@id/decimal_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/one_button_vertical" />
+
+        <Button
+            android:id="@+id/three_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/three_numeral"
+            app:layout_constraintBottom_toTopOf="@id/minus_invert_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/two_button_vertical" />
+
+        <Button
+            android:id="@+id/four_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/four_numeral"
+            app:layout_constraintBottom_toTopOf="@id/one_button_vertical"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/five_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/five_numeral"
+            app:layout_constraintBottom_toTopOf="@id/two_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/four_button_vertical" />
+
+        <Button
+            android:id="@+id/six_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/six_numeral"
+            app:layout_constraintBottom_toTopOf="@id/three_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/five_button_vertical" />
+
+        <Button
+            android:id="@+id/seven_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/seven_numeral"
+            app:layout_constraintBottom_toTopOf="@id/four_button_vertical"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/eight_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/eight_numeral"
+            app:layout_constraintBottom_toTopOf="@id/five_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/seven_button_vertical" />
+
+        <Button
+            android:id="@+id/nine_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/nine_numeral"
+            app:layout_constraintBottom_toTopOf="@id/six_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/eight_button_vertical" />
+
+        <Button
+            android:id="@+id/del_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/delete_button_text"
+            app:layout_constraintBottom_toTopOf="@id/multiply_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/nine_button_vertical" />
+
+        <Button
+            android:id="@+id/clear_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/clear_button_text"
+            app:layout_constraintBottom_toTopOf="@id/divide_button_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/del_button_vertical" />
+
+        <Button
+            android:id="@+id/multiply_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/multiplication_symbol"
+            app:layout_constraintBottom_toTopOf="@id/add_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/six_button_vertical" />
+
+        <Button
+            android:id="@+id/divide_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/division_sign_button"
+            app:layout_constraintBottom_toTopOf="@id/subtract_button_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/multiply_button_vertical" />
+
+        <Button
+            android:id="@+id/add_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/addition_symbol"
+            app:layout_constraintBottom_toTopOf="@id/ans_button_vertical"
+            app:layout_constraintStart_toEndOf="@id/three_button_vertical" />
+
+        <Button
+            android:id="@+id/subtract_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/minus_sign_button"
+            app:layout_constraintBottom_toTopOf="@id/equal_button_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/add_button_vertical" />
+
+        <Button
+            android:id="@+id/decimal_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/decimal_marker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/zero_button_vertical" />
+
+        <Button
+            android:id="@+id/ans_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/previous_answer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minus_invert_button_vertical" />
+
+        <Button
+            android:id="@+id/equal_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/equal_sign_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ans_button_vertical" />
+
+
+        <Button
+            android:id="@+id/minus_invert_button_vertical"
+            android:layout_width="@dimen/small_button_width_height"
+            android:layout_height="@dimen/small_button_width_height"
+            android:layout_margin="@dimen/button_margin"
+            android:text="@string/invert_minus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/decimal_button_vertical" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
