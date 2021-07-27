@@ -131,6 +131,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.reset()}"
             android:text="@string/clear_button_text"
             app:layout_constraintBottom_toTopOf="@id/divide_button_vertical"
             app:layout_constraintEnd_toEndOf="parent"
