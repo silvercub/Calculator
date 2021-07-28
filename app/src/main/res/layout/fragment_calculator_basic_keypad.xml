@@ -142,6 +142,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setMultiplicationOperator()}"
             android:text="@string/multiplication_symbol"
             app:layout_constraintBottom_toTopOf="@id/add_button_vertical"
             app:layout_constraintStart_toEndOf="@id/six_button_vertical" />
@@ -151,6 +152,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setDivisionOperator()}"
             android:text="@string/division_sign_button"
             app:layout_constraintBottom_toTopOf="@id/subtract_button_vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +163,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setAdditionOperator()}"
             android:text="@string/addition_symbol"
             app:layout_constraintBottom_toTopOf="@id/ans_button_vertical"
             app:layout_constraintStart_toEndOf="@id/three_button_vertical" />
@@ -170,6 +173,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setSubtractionOperator()}"
             android:text="@string/minus_sign_button"
             app:layout_constraintBottom_toTopOf="@id/equal_button_vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,6 +214,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.invertOperator()}"
             android:text="@string/invert_minus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/decimal_button_vertical" />

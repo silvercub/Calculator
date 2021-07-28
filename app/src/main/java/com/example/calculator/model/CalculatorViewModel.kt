@@ -3,7 +3,7 @@ package com.example.calculator.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.calculator.MathOperation
+import com.example.calculator.*
 import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.pow
@@ -12,6 +12,7 @@ private const val FIRST_OPERAND = 1
 private const val SECOND_OPERAND = 2
 private const val TEN = 10
 private const val ZERO_LONG: Long = 0
+private const val NEGATIVE_ONE = -1
 
 
 class CalculatorViewModel : ViewModel() {
@@ -25,25 +26,34 @@ class CalculatorViewModel : ViewModel() {
         get() = _calculationDisplay
     private var _decimalModeFirstOperand: Boolean = false
     private var _decimalModeSecondOperand: Boolean = false
+    private val _previousCalcResult: Double = 0.0
 
     init {
         reset()
     }
 
     private fun updateDisplay() {
-        val totalFirstOperand = getTotalOperand(
-            _wholeFirstOperand,
-            _fractionalFirstOperand, _decimalModeFirstOperand
-        ).toString()
+        val totalFirstOperand = getTotalFirstOperand().toString()
         _calculationDisplay.value = when (getCurrentOperand()) {
             FIRST_OPERAND -> totalFirstOperand
             else -> totalFirstOperand + _mathOperation?.symbol +
-                    getTotalOperand(
-                        _wholesSecondOperand,
-                        _fractionalFirstOperand,
-                        _decimalModeSecondOperand
-                    )
+                    getTotalSecondOperand().toString()
         }
+    }
+
+    private fun getTotalFirstOperand(): Double = getTotalOperand(
+        _wholeFirstOperand,
+        _fractionalFirstOperand, _decimalModeFirstOperand
+    )
+
+    private fun getTotalSecondOperand(): Double = getTotalOperand(
+        _wholesSecondOperand,
+        _fractionalFirstOperand,
+        _decimalModeSecondOperand
+    )
+
+    fun calculate() {
+        // TODO: implement calculation function(https://florianz.atlassian.net/browse/CAL-14?atlOrigin=eyJpIjoiOWUzNDk4NzBiN2VlNGE2YWI4ODIzNTM1YjgyNGQ5ZmEiLCJwIjoiaiJ9)
     }
 
     /*
@@ -90,7 +100,8 @@ class CalculatorViewModel : ViewModel() {
             wholeOperand.toDouble()
         } else {
             // add the non-decimal(whole part)
-            // and convert the decimal part by dividing it by 10 times the length
+            // and convert the decimal part by dividing it
+            // by 10 to the power of the decimal parts length
             wholeOperand + decimalOperand / (TEN.toDouble().pow(decimalOperand.length()))
         }
     }
@@ -171,5 +182,29 @@ class CalculatorViewModel : ViewModel() {
             }
         }
         updateDisplay()
+    }
+
+    fun invertOperator() {
+        when (getCurrentOperand()) {
+            FIRST_OPERAND -> _wholeFirstOperand * NEGATIVE_ONE
+            else -> _wholesSecondOperand * NEGATIVE_ONE
+
+        }
+    }
+
+    fun setAdditionOperator() {
+        _mathOperation = Add()
+    }
+
+    fun setSubtractionOperator() {
+        _mathOperation = Subtract()
+    }
+
+    fun setMultiplicationOperator() {
+        _mathOperation = Multiply()
+    }
+
+    fun setDivisionOperator() {
+        _mathOperation = Divide()
     }
 }
