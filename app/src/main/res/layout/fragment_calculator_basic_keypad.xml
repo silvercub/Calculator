@@ -180,6 +180,7 @@
             android:layout_width="@dimen/small_button_width_height"
             android:layout_height="@dimen/small_button_width_height"
             android:layout_margin="@dimen/button_margin"
+            android:onClick="@{() -> viewModel.setDecimalMode()}"
             android:text="@string/decimal_marker"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/zero_button_vertical" />

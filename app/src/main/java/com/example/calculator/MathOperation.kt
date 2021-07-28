@@ -1,35 +1,35 @@
 package com.example.calculator
 
-abstract class MathOperation(val firstOperand: Float, val secondOperand: Float) {
+abstract class MathOperation(val firstOperand: Double, val secondOperand: Double) {
     abstract val symbol: String
-    abstract fun calculate(firstOperand: Float, secondOperand: Float): Float
+    abstract fun calculate(firstOperand: Double, secondOperand: Double): Double
 }
 
-class Add(private val x: Float, private val y: Float) : MathOperation(x, y) {
+class Add(private val x: Double, private val y: Double) : MathOperation(x, y) {
     override val symbol = "+"
-    override fun calculate(firstOperand: Float, secondOperand: Float): Float {
+    override fun calculate(firstOperand: Double, secondOperand: Double): Double {
         return firstOperand + secondOperand
     }
 
 }
 
-class Subtract(private val x: Float, private val y: Float) : MathOperation(x, y) {
+class Subtract(private val x: Double, private val y: Double) : MathOperation(x, y) {
     override val symbol = "-"
-    override fun calculate(firstOperand: Float, secondOperand: Float): Float {
+    override fun calculate(firstOperand: Double, secondOperand: Double): Double {
         return firstOperand - secondOperand
     }
 }
 
-class Multiply(private val x: Float, private val y: Float) : MathOperation(x, y) {
+class Multiply(private val x: Double, private val y: Double) : MathOperation(x, y) {
     override val symbol = "*"
-    override fun calculate(firstOperand: Float, secondOperand: Float): Float {
+    override fun calculate(firstOperand: Double, secondOperand: Double): Double {
         return firstOperand * secondOperand
     }
 }
 
-class Divide(private val x: Float, private val y: Float) : MathOperation(x, y) {
+class Divide(private val x: Double, private val y: Double) : MathOperation(x, y) {
     override val symbol = "/"
-    override fun calculate(firstOperand: Float, secondOperand: Float): Float {
+    override fun calculate(firstOperand: Double, secondOperand: Double): Double {
         return firstOperand / secondOperand
     }
 }

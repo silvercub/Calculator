@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.example.calculator.MathOperation
 import kotlin.math.abs
 import kotlin.math.log10
+import kotlin.math.pow
 
 private const val FIRST_OPERAND = 1
 private const val SECOND_OPERAND = 2
-private const val FIRST_OPERAND_WITH_DECIMAL_MODE = 3
-private const val SECOND_OPERAND_WITH_DECIMAL_MODE = 4
 private const val TEN = 10
 private const val ZERO_LONG: Long = 0
 
@@ -86,13 +85,13 @@ class CalculatorViewModel : ViewModel() {
     private fun getTotalOperand(
         wholeOperand: Long,
         decimalOperand: Long, decimalFlag: Boolean
-    ): Float {
-        return if (decimalFlag) {
-            wholeOperand.toFloat()
+    ): Double {
+        return if (!decimalFlag) {
+            wholeOperand.toDouble()
         } else {
             // add the non-decimal(whole part)
             // and convert the decimal part by dividing it by 10 times the length
-            wholeOperand + (decimalOperand.toFloat() / (decimalOperand.length() * 10))
+            wholeOperand + decimalOperand / (TEN.toDouble().pow(decimalOperand.length()))
         }
     }
 
@@ -110,7 +109,7 @@ class CalculatorViewModel : ViewModel() {
         updateDisplay()
     }
 
-    /**
+    /*
      * converts an integer to its length ignoring it's equal sign.
      * source: https://stackoverflow.com/questions/42950812/count-number-of-digits-in-kotlin
      */
@@ -141,6 +140,13 @@ class CalculatorViewModel : ViewModel() {
             }
         }
         updateDisplay()
+    }
+
+    fun setDecimalMode() {
+        when (getCurrentOperand()) {
+            FIRST_OPERAND -> _decimalModeFirstOperand = true
+            else -> _decimalModeSecondOperand = true
+        }
     }
 
     private fun applyToAppropriateOperand(changeOperand: (Long) -> Long) {
