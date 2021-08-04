@@ -32,6 +32,10 @@ class CalculatorViewModel : ViewModel() {
         reset()
     }
 
+    /*
+     * Update the calculator display text with either the current operation that's being entered
+     * or the calculation result.
+     */
     private fun updateDisplay() {
         val totalFirstOperand = getTotalFirstOperand().toString()
         _calculationDisplay.value = when (getCurrentOperand()) {
@@ -41,11 +45,19 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    /*
+     * Update the calculator display text with either the current operation that's being entered
+     * or the calculation result.
+     */
     private fun getTotalFirstOperand(): Double = getTotalOperand(
         _wholeFirstOperand,
         _fractionalFirstOperand, _decimalModeFirstOperand
     )
 
+    /*
+     * Helper method to return the operand(number portion of the calculation)
+     * that is second in the math operation
+     */
     private fun getTotalSecondOperand(): Double = getTotalOperand(
         _wholesSecondOperand,
         _fractionalFirstOperand,
@@ -63,9 +75,13 @@ class CalculatorViewModel : ViewModel() {
     fun setOrExtendOperand(buttonPress: Int) =
         applyToAppropriateOperand(buttonPress, this::setValueIfZeroOtherwiseExtend)
 
+
     fun deleteLastEntry() =
         applyToAppropriateOperand(this::backspace)
 
+    /*
+     * Helper function to "erase" an integer from and input integer by truncating the last value
+     */
     private fun backspace(originalValue: Long): Long {
         return originalValue / TEN
     }
