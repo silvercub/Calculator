@@ -75,7 +75,9 @@ class CalculatorViewModel : ViewModel() {
     fun setOrExtendOperand(buttonPress: Int) =
         applyToAppropriateOperand(buttonPress, this::setValueIfZeroOtherwiseExtend)
 
-
+    /*
+     * clear the last entry from the calculator
+     */
     fun deleteLastEntry() =
         applyToAppropriateOperand(this::backspace)
 
@@ -93,6 +95,10 @@ class CalculatorViewModel : ViewModel() {
     private fun extendByOneTensPlace(originalValue: Long): Long =
         TEN * originalValue
 
+    /*
+     * Determine the currently active operand. If there is no math operation set then the first
+     * operand is still active. Otherwise the second operator is active.
+     */
     private fun getCurrentOperand(): Int {
         return when (_mathOperation) {
             null -> FIRST_OPERAND
@@ -100,6 +106,10 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    /*
+     * If the operand is 0 replace the value with the input. If there is already input then
+     * add the new numeric input to the tens column and shift the previous number to the left.
+     */
     private fun setValueIfZeroOtherwiseExtend(operand: Long, newVal: Int): Long {
         return if (operand == ZERO_LONG) {
             newVal.toLong()
@@ -108,6 +118,9 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    /*
+     * Get the entire operand by combining the whole and fractional part of the operand.
+     */
     private fun getTotalOperand(
         wholeOperand: Long,
         decimalOperand: Long, decimalFlag: Boolean
@@ -145,6 +158,9 @@ class CalculatorViewModel : ViewModel() {
         else -> log10(abs(toDouble())).toInt() + 1
     }
 
+    /*
+     * Helper function to modify the active operand.
+     */
     private fun applyToAppropriateOperand(buttonPress: Int, changeOperand: (Long, Int) -> Long) {
         when (getCurrentOperand()) {
             FIRST_OPERAND -> {
@@ -169,6 +185,10 @@ class CalculatorViewModel : ViewModel() {
         updateDisplay()
     }
 
+    /*
+     * Determine the active operand and set decimal mode. When decimal mode is active all numeric
+     * input will be added to the decimal part of the operand.
+     */
     fun setDecimalMode() {
         when (getCurrentOperand()) {
             FIRST_OPERAND -> _decimalModeFirstOperand = true
@@ -176,6 +196,9 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    /*
+     * Helper function to modify the active operand.
+     */
     private fun applyToAppropriateOperand(changeOperand: (Long) -> Long) {
         when (getCurrentOperand()) {
             FIRST_OPERAND -> {
@@ -200,6 +223,9 @@ class CalculatorViewModel : ViewModel() {
         updateDisplay()
     }
 
+    /*
+     * Invert the active operand.
+     */
     fun invertOperator() {
         when (getCurrentOperand()) {
             FIRST_OPERAND -> _wholeFirstOperand * NEGATIVE_ONE
@@ -208,18 +234,30 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    /*
+     * Set the active operand to addition.
+     */
     fun setAdditionOperator() {
         _mathOperation = Add()
     }
 
+    /*
+     * Set the active operand to subtraction.
+     */
     fun setSubtractionOperator() {
         _mathOperation = Subtract()
     }
 
+    /*
+     * Set the active operand to multiply.
+     */
     fun setMultiplicationOperator() {
         _mathOperation = Multiply()
     }
 
+    /*
+     * set the active operand to division.
+     */
     fun setDivisionOperator() {
         _mathOperation = Divide()
     }
